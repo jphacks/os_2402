@@ -11,15 +11,14 @@ prepare-commit-msg:
         run: |
             scripts/prepare-commit-msg
 
-# commit-msg:
-#     commands:
-#     commitlint:
-#         run: |
-#             npx commitlint --edit {1}
-
 # post-merge:
 #     commands:
 #     pnpm:
 #         glob: "{package.json,package-lock.json}"
 #         run: |
 #             npm install
+
+commit-msg:
+    scripts:
+        "template_checker":
+            runner: bash

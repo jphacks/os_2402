@@ -1,2 +1,4 @@
+#:schema https://mise.jdx.dev/schema/mise.json
+
 [tools]
 go = "1.23.2"

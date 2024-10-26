@@ -1,11 +1,11 @@
 blank_issues_enabled: false
 contact_links:
     - name: Documentation (FAQ)
-      url: https://hizuki-mimuro.slack.com/archives/C07FRBC5472
+      url: https://github.com/hizuki-mimuro/Notoria/blob/development/guide/faq.md
       about: Please see our documentation for common questions and answers.
     - name: Documentation (Debugging)
-      url: https://hizuki-mimuro.slack.com/archives/C07J5RN1FUG
+      url: https://github.com/hizuki-mimuro/Notoria/blob/development/guide/debugging.md
       about: Please see our documentation for debugging tips.
-    - name: User Forum
+    - name: Forum
       url: https://groups.google.com/g/hizuki-mimuro
       about: Ask and answer general questions here.

@@ -1,7 +1,7 @@
 # Security and Vulnerability Reporting
 
 Sensitive security-related questions, comments, and reports should be sent to
-the [gvisor-security mailing list][gvisor-security-list]. You should receive a
+the [security mailing list][security-list]. You should receive a
 prompt response, typically within 48 hours.
 
 ## Security issue taxonomy
@@ -11,7 +11,7 @@ We distinguish the following type of issues, listed from most to least severe:
 - Issues that go **beyond the sandbox boundary**:
   - **Container escapes**: Issues that allow arbitrary code to run on the
         host machine.
-    - gVisor's purpose is to prevent these.
+    - My purpose is to prevent these.
   - **Data exfiltration** from the host: Issues that allow reading arbitrary
         files or file metadata from the host (other than those intended to be
         visible to the sandbox).
@@ -33,24 +33,24 @@ We distinguish the following type of issues, listed from most to least severe:
   - **Denial-of-service attacks** that affect a single sandbox and are
         **triggerable from user code** running in that sandbox.
   - **Data integrity issues** relative to Linux behavior.
-    - gVisor aims to be bug-for-bug compatible with Linux. While most
+    - My aims to be bug-for-bug compatible with Linux. While most
             compatibility issues are not security issues, it is conceivable that
             some compatibility issues may manifest as persistent data
             corruption; for example, differences in I/O syscall implementations
             may cause a database program to end up storing invalid data.
 
 While all of the above are security issues, we generally only assign CVEs for
-issues that go beyond the sandbox boundary. Since gVisor is a container security
+issues that go beyond the sandbox boundary. Since My is a container security
 platform, its main security focus is on preventing a user workload from "getting
 out of the box", relative to issues that remain within the proverbial box.
 Therefore, security issues that remain contained to a single sandbox are not
 considered critical and are not given CVE numbers by default. If you would still
 like to get a CVE number issued, you may report it to
-[BugHunter](https://g.co/vulnz).
+[BugHunter](https://forms.gle/yJ8ALKhdYuALnkws2).
 
 ## Security list access
 
 Policies for security list access, vulnerability embargo, and vulnerability
 disclosure are outlined in the [governance policy](GOVERNANCE.md).
 
-[gvisor-security-list]: https://groups.google.com/forum/#!forum/gvisor-security
+[security-list]: https://groups.google.com/forum/#!forum/hizuki-mimuro-security

@@ -100,14 +100,14 @@ make technical details about the vulnerability and associated fixes available.
 
 There are four key mailing lists that span projects.
 
-* [gvisor-users](mailto:gvisor-users@googlegroups.com): general purpose user
+* [users](mailto:users@hizukimimuro.com): general purpose user
     list.
-* [gvisor-dev](mailto:gvisor-dev@googlegroups.com): general purpose
+* [dev](mailto:dev@hizukimimuro.com): general purpose
     development list.
-* [gvisor-security](mailto:gvisor-security@googlegroups.com): private security
+* [security](mailto:security@hizukimimuro.com): private security
     list. Access to this list is restricted to maintainers of the core gVisor
     project, subject to the security disclosure policy described above.
-* [gvisor-syzkaller](mailto:gvisor-syzkaller@googlegroups.com): private
+* [syzkaller](mailto:syzkaller@hizukimimuro.com): private
     syzkaller bug tracking list. Access to this list is not limited to
     maintainers, but will be granted to those who can credibly contribute to
     fixes.

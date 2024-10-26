@@ -1,29 +1,20 @@
 $schema: "https://moonrepo.dev/schemas/workspace.json"
 
-projects:
-  - apps/mobile
-  - apps/backend
-  - services/machine-learning
-  - infrastructure
+versionConstraint: ">=1.16.0"
 
-pipelines:
-  lint:
-    - apps/mobile: flutter analyze
-    - apps/backend: go vet ./...
-    - services/machine-learning: pylint app/
-  formt:
-    - apps/mobile: flutter analyze
-    - apps/backend: go vet ./...
-    - services/machine-learning: pylint app/
-  test:
-    - apps/mobile: flutter test
-    - apps/backend: go test ./...
-    - services/machine-learning: pytest tests/
-  build:
-    - apps/mobile: flutter build apk
-    - apps/backend: go build -o bin/backend cmd/backend/main.go
-    - services/machine-learning: python setup.py install
+projects:
+    ml: "apps/machine-learning"
+    mobile: "apps/mobile"
+    server: "apps/server"
+    infrastructure: "infrastructure"
 
 vcs:
-  manager: "git"
-  defaultBranch: "master"
+    manager: "git"
+    defaultBranch: "master"
+
+runner:
+    archivableTargets:
+        - ":format"
+        - ":lint"
+        - ":test"
+    logRunningCommand: true
