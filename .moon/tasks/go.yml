@@ -7,10 +7,6 @@ implicitInputs:
     - "package.json"
 
 fileGroups:
-    # Application specific files
-    app: []
-    configs:
-        - "*.{js,json,yml,yaml}"
     sources:
         - "public/**/*"
         - "src/**/*"
