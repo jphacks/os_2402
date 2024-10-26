@@ -1,13 +1,11 @@
 $schema: 'https://moonrepo.dev/schemas/template.json'
 
-# REQUIRED: Name of the template in a human readable format.
 title: 'go'
 
-# REQUIRED: Description of what the template is for and other relevant information.
-description: 'Description of the template.'
+description: |
+    Scaffolds the initial structure for an go,
+    including DDD and test folders, a go.mod, and more.
 
-# Mapping of variables that will be interpolated and rendered within template files.
-# Users will be prompted to provide a value when running the generator.
 variables:
     name:
         type: 'string'
