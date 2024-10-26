@@ -1,0 +1,8 @@
+# monorepo/apps/mobile/melos.yaml
+name: mobile
+packages:
+  - ../packages/ui_components
+  - ../packages/utils
+scripts:
+  generate-graphql:
+    run: flutter pub run graphql_codegen:generate --config graphql/graphql-codegen-config.yaml
