@@ -1,6 +1,6 @@
 $schema: "https://moonrepo.dev/schemas/workspace.json"
 
-versionConstraint: ">=1.16.0"
+versionConstraint: "1.29.3"
 
 projects:
     ml: "apps/machine-learning"
@@ -8,13 +8,32 @@ projects:
     server: "apps/server"
     infrastructure: "infrastructure"
 
-vcs:
-    manager: "git"
-    defaultBranch: "master"
-
 runner:
     archivableTargets:
         - ":format"
         - ":lint"
         - ":test"
     logRunningCommand: true
+    autoCleanCache: true
+    cacheLifetime: "24 hours"
+
+generator:
+    templates:
+        - "./templates/generator"
+
+vcs:
+    manager: "git"
+    provider: "github"
+    defaultBranch: "master"
+    remoteCandidates:
+        - "origin"
+        - "upstream"
+    # pre-commit:
+    #     - "moon run :lint :format --affected --status=staged"
+    #     - "another-command"
+# codeowners:
+#     globalPaths:
+#         "*": ["@admins"]
+#         "config/": ["@infra"]
+#         "infr/": ["@infra"]
+#         "/.github/": ["@infra"]

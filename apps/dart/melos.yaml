@@ -12,7 +12,7 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
-name: mobile
+name: dart
 repository: https://github.com/hizuki-mimuro/Notoria
 
 packages:
@@ -164,6 +164,9 @@ scripts:
         description: Generate the pigeon messages for all the supported packages.
         packageFilters:
             fileExists: "pigeons/messages.dart"
+
+    generate:graphql:
+        run: "flutter pub run graphql_codegen:generate"
 
     add-license-header:
         # If you add here another --ignore flag, add it also to
