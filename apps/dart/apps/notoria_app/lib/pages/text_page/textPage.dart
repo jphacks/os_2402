@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import './components/question.dart';
+import './components/Character.dart';
 
 class TextPage extends StatelessWidget {
   const TextPage({super.key});
@@ -15,6 +16,8 @@ class TextPage extends StatelessWidget {
             const Question(
               overlayText: '今日はどうだった？',
             ),
+
+            const Character(),
 
           ],
         )
