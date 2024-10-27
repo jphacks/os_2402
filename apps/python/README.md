@@ -32,6 +32,9 @@ Leverage Cloud Natural Language and Vertex AI to perform a variety of natural la
 │   │       ├── model_v1.pkl               # Model data saved with pickle
 │   │       └── tokenizer.pkl              # Preprocessed tokenizer
 │   └── __init__.py
+├── libs
+│   ├── __init__.py                        # Library initialization file
+│   └── {library_name}
 ├── pyproject.toml                         # Poetry settings file
 ├── poetry.toml                            # Poetry project file
 ├── poetry.lock
