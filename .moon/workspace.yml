@@ -3,10 +3,8 @@ $schema: "https://moonrepo.dev/schemas/workspace.json"
 versionConstraint: "1.29.3"
 
 projects:
-    ml: "apps/machine-learning"
-    mobile: "apps/mobile"
-    server: "apps/server"
-    infrastructure: "infrastructure"
+    - apps/*
+    - packages/*
 
 runner:
     archivableTargets:

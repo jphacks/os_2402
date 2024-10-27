@@ -1,16 +1,6 @@
-<img src="https://socialify.git.ci/altive/flutter_app_template/image?description=1&font=Inter&issues=1&owner=1&pattern=Floating%20Cogs&pulls=1&stargazers=1&theme=Dark" alt="flutter_app_template" width="640" height="320" />
+# Flutter App
 
-[![Flutter app code check](https://github.com/altive/flutter_app_template/actions/workflows/flutter-app-code-check.yml/badge.svg)](https://github.com/altive/flutter_app_template/actions/workflows/flutter-app-code-check.yml)
-[![melos](https://img.shields.io/badge/maintained%20with-melos-f700ff.svg?style=flat-square)](https://github.com/invertase/melos)
-[![codecov](https://codecov.io/gh/altive/flutter_app_template/graph/badge.svg?token=NUHMSLBULE)](https://codecov.io/gh/altive/flutter_app_template)
-
-[![](https://codecov.io/gh/altive/flutter_app_template/graphs/icicle.svg?token=NUHMSLBULE)]()
-
-# Flutter App Template
-
-"Flutter App Template" is a project to template and introduce an approach to developing Flutter apps, including architecture and project structure.
-
-"Flutter App Template" repository employs a mono-repo and consists of several internal packages and apps.
+This is the code for a mobile web application using Flutter/Dart. It uses an MVVM architecture and uses Melos for module management, GraphQL communication, and state management.
 
 ## Packages overview
 
@@ -24,7 +14,7 @@ This package stores general-purpose functions that are too small to be cut out i
 
 ## App overview
 
-### `flutter_app`
+### `apps/{app_name}_app`
 
 This is a template app package for Flutter apps.
 It comes with dev, stg, and prod environments set up.
