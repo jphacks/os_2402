@@ -8,7 +8,7 @@ jobs:
     issue_reviver:
         runs-on: ubuntu-latest
         steps:
-            - uses: actions/checkout@v4
+            - uses: actions/checkout@v4.2.2
               if: github.repository == 'hizuki-mimuro/Notoria'
 
             - run: make run TARGETS="//tools/github" ARGS="-path=. revive"
