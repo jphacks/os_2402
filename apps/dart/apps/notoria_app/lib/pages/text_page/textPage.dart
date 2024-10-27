@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-
+import './components/question.dart';
 
 class TextPage extends StatelessWidget {
   const TextPage({super.key});
@@ -12,6 +12,9 @@ class TextPage extends StatelessWidget {
         child: Column(
           mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
+            const Question(
+              overlayText: '今日はどうだった？',
+            ),
 
           ],
         )
