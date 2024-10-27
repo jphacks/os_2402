@@ -1,0 +1,11 @@
+name: dart
+description: ""
+repository: https://github.com/hizuki-mimuro/Notoria
+issue_tracker: https://github.com/hizuki-mimuro/Notoria/issues
+version: 0.1.0
+
+environment:
+  sdk: 3.5.4
+
+dev_dependencies:
+  melos: 6.2.0

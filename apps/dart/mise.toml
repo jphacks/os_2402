@@ -1,0 +1,4 @@
+[tools]
+dart = "3.5.4"
+flutter = "3.24.3"
+firebase = "13.23.0"

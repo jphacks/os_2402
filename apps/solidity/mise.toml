@@ -1,0 +1,4 @@
+[tools]
+solidity = "0.8.28"
+node = "20.18.0"
+yarn = "4.5.1"

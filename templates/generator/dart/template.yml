@@ -1,0 +1,14 @@
+$schema: 'https://moonrepo.dev/schemas/template.json'
+
+title: 'dart'
+
+description: |
+    Scaffolds the initial structure for an dart,
+    including source and test folders, a package.json, and more.
+
+variables:
+    name:
+        type: 'string'
+        default: ''
+        required: true
+        prompt: 'Package name?'

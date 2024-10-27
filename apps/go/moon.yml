@@ -1,0 +1,34 @@
+type: "application"
+
+workspace:
+    inheritedTasks:
+        exclude: ["lint"]
+
+fileGroups:
+    app:
+        - "src/**/*"
+        - "angular.*"
+
+tasks:
+    setup:
+        command: |
+            go mod tidy
+            atlas migrate apply
+
+    dev:
+        command: "ng serve"
+        local: true
+
+    build:
+        command: "ng build"
+        inputs:
+            - "@group(app)"
+            - "@group(sources)"
+        outputs:
+            - "dist"
+
+    # lint:
+    #   command: 'ng lint'
+    #   inputs:
+    #     - '@group(app)'
+    #     - '@group(sources)'

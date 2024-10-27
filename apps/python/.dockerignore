@@ -1,0 +1,6 @@
+*
+!pyproject.toml
+!poetry.toml
+!poetry.locl
+!moon.yml
+!mise.toml
