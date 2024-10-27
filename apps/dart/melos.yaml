@@ -16,24 +16,22 @@ name: dart
 repository: https://github.com/hizuki-mimuro/Notoria
 
 packages:
-    - apps
-    - packages
+    - "apps/*"
+    - "packages/*"
 
 command:
-    version:
-        # Generate commit links in package changelogs.
-        linkToCommits: true
-        # # Only allow versioning to happen on main branch.
-        # branch: master
-        # Additionally build a changelog at the root of the workspace.
-        workspaceChangelog: true
-
     bootstrap:
-        # It seems so that running "pub get" in parallel has some issues (like
-        # https://github.com/dart-lang/pub/issues/3404). Disabling this feature
-        # makes the CI much more stable.
-        runPubGetInParallel: false
-        usePubspecOverrides: true
+        environment:
+            sdk: ^3.5.3
+    clean:
+        hooks:
+            post: |
+                melos exec --flutter -- "flutter clean"
+                melos exec --flutter --file-exists="ios/Podfile.lock" -- "cd ios && rm Podfile.lock"
+                melos exec --flutter --file-exists="macos/Podfile.lock" -- "cd macos && rm Podfile.lock"
+    version:
+        branch: main
+        releaseUrl: true
 
 scripts:
     flutter-analyze:
@@ -48,155 +46,118 @@ scripts:
             dirExists:
                 - apps
 
-    format:
-        run: |
-            melos run format:dart && \
-            melos run format:ios &&  \
-            melos run format:android
-        description: |
-            Formats the code of all packages (Dart, iOS, Android).
-
-    format:dart:
-        run: |
-            dart format .
-        description: |
-            Formats the code of dart package with dart format.
-
-    format:ios:
-        run: |
-            swiftformat --quiet .
-        description: |
-            Formats the code of iOS package with swiftformat.
-             - Requires `swiftformat` (can be installed via Brew on macOS).
-
-    format:android:
-        run: |
-            if [ -d "example" ]; then cd example; fi && \
-              if [ ! -f android/gradlew ]; then flutter build apk --config-only; fi && \
-              cd android && \
-              ./gradlew ktfmtFormat
-        exec:
-            concurrency: 1
-            failFast: true
-        description: |
-            Formats the code of Android package with ktfmt.
+    custom_lint:
+        exec: dart run custom_lint
+        description: Run custom_lint.
         packageFilters:
-            dirExists:
-                - android
-            scope: "*example*"
+            dirExists: lib
+            dependsOn: "custom_lint"
 
-    test:dart:
-        run: flutter pub get && flutter test
-        exec:
-            concurrency: 1
-            failFast: true
-        description: Flutter test
-        packageFilters:
-            fileExists: "pigeons/messages.dart"
-
-    test:android:
+    format:ci:
         run: |
-            if [ -d "example" ]; then cd example; fi && \
-              if [ ! -f android/gradlew ]; then flutter build apk --config-only; fi && \
-              cd android && \
-              ./gradlew test
-        exec:
-            concurrency: 1
-            failFast: true
-        description: Android native unit tests
+            melos exec -- \
+            dart format --set-exit-if-changed $(find . -name "*.dart" -not \( -name "*.*freezed.dart" -o -name "*.*g.dart" -o -name "*.gen.dart" -o -wholename "./.dart_tool/*" \) )
+        description: Run format.
         packageFilters:
-            dirExists:
-                - android
-            scope: "*example*"
+            flutter: true
+            dirExists: [lib, test]
 
-    test:ios:
-        run: |
-            if [ -d "example" ]; then cd example; fi && \
-            ../tool/test-ios.sh
-        exec:
-            concurrency: 1
-            failFast: true
-        description: iOS native unit tests
-        packageFilters:
-            dirExists:
-                - ios
-            scope: "*example*"
-
-    flutter-build-android:
-        run: |
-            if [ -d "example" ]; then cd example; fi && \
-            flutter pub get && flutter build apk && flutter build appbundle
-        exec:
-            concurrency: 1
-            failFast: true
-        description: Build a specific example app for Android.
-        packageFilters:
-            dirExists:
-                - android
-            scope: "*example*"
-
-    flutter-build-ios:
-        run: |
-            if [ -d "example" ]; then cd example; fi && \
-            flutter pub get && flutter build ios --release --no-codesign
-        exec:
-            concurrency: 1
-            failFast: true
-        description: Build a specific example app for iOS.
-        packageFilters:
-            dirExists:
-                - ios
-            scope: "*example*"
-
-    generate:mocks:
+    fix:
         exec: |
-            dart run build_runner build --delete-conflicting-outputs && \
-              melos run format && \
-              melos run add-license-header
-        description: Generate the pigeon messages for all the supported packages.
+            dart fix --apply lib
+            dart run custom_lint --fix
+        description: Run dart and custom_lint fixes.
         packageFilters:
-            fileExists: "pigeons/messages.dart"
+            dirExists: lib
 
-    generate:pigeon:
+    gen:
+        run: dart run build_runner build --delete-conflicting-outputs
+        exec:
+            concurrency: 1
+        description: Run generate code.
+        packageFilters:
+            dirExists: lib
+            dependsOn: "build_runner"
+
+    slang:
+        run: dart run slang
+        exec:
+            concurrency: 1
+        description: Run generate translation code.
+        packageFilters:
+            dirExists: lib
+            dependsOn: slang
+
+    gen:watch:
+        run: dart run build_runner watch --delete-conflicting-outputs
+        exec:
+            concurrency: 99
+        description: Watch and run generate code.
+        packageFilters:
+            dirExists: lib
+            dependsOn: "build_runner"
+
+    gen:icons:
+        exec: dart run flutter_launcher_icons
+        description: Generate launcher icons.
+        packageFilters:
+            dirExists: lib
+            dependsOn: "flutter_launcher_icons"
+
+    test:
+        run: flutter test
+        exec:
+            failFast: true
+        description: Run flutter test.
+        packageFilters:
+            flutter: true
+            dirExists: test
+
+    test:ci:
+        run: flutter test --coverage
+        exec:
+            failFast: true
+        description: Run flutter test for CI.
+        packageFilters:
+            flutter: true
+            dirExists: test
+
+    flutterfire:update:
+        exec: flutterfire update
+        description: Run flutterfire update.
+        packageFilters:
+            flutter: true
+            dirExists: lib
+            dependsOn: "firebase_core"
+
+    pod:
+        run: melos run pod:ios --no-select && melos run pod:macos --no-select
+        description: Clean install the Pods
+
+    pod:ios:
         exec: |
-            dart run pigeon --input ./pigeons/messages.dart && \
-              melos run format
-        description: Generate the pigeon messages for all the supported packages.
+            cd ios
+            rm -f Podfile.lock
+            pod install --repo-update
+        description: Run pod install on iOS.
         packageFilters:
-            fileExists: "pigeons/messages.dart"
+            dirExists: [lib, ios]
+            fileExists: "ios/Podfile"
 
-    generate:graphql:
-        run: "flutter pub run graphql_codegen:generate"
+    build:android:prod:
+        run: flutter build appbundle --dart-define-from-file=dart_defines/prod.env
+        exec:
+            concurrency: 1
+        description: Build the AppBundle for the production app.
+        packageFilters:
+            flutter: true
+            dirExists: [lib, android]
 
-    add-license-header:
-        # If you add here another --ignore flag, add it also to
-        # "check-license-header".
-        run: |
-            addlicense -f header_template.txt \
-              --ignore "**/Pods/**" \
-              --ignore "**/.dart_tool/**" \
-              --ignore "**/example/build/**" \
-              --ignore "**/example/integration_test/test_bundle.dart" \
-              --ignore "build/**" \
-              --ignore "**/GeneratedPluginRegistrant.*" \
-              --ignore "**/flutter_export_environment.sh" \
-              .
-        description: Add a license header to all necessary files.
-
-    check-license-header:
-        # If you add here another --ignore flag, add it also to
-        # "add-license-header".
-        run: |
-            addlicense -f header_template.txt \
-              --check \
-              --ignore "**/Pods/**" \
-              --ignore "**/.dart_tool/**" \
-              --ignore "**/example/build/**" \
-              --ignore "**/example/integration_test/test_bundle.dart" \
-              --ignore "build/**" \
-              --ignore "**/GeneratedPluginRegistrant.*" \
-              --ignore "**/flutter_export_environment.sh" \
-              .
-        description: Add a license header to all necessary files.
-        generate-graphql:
-            run: flutter pub run graphql_codegen:generate --config graphql/graphql-codegen-config.yaml
+    upload:ios:prod:
+        run: flutter build ipa --dart-define-from-file=dart_defines/prod.env --export-options-plist="ios/prod/ExportOptions.plist"
+        exec:
+            concurrency: 1
+        description: Upload the IPA for the production app.
+        packageFilters:
+            flutter: true
+            dirExists: [lib, ios]
