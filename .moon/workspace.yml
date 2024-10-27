@@ -3,13 +3,16 @@ $schema: "https://moonrepo.dev/schemas/workspace.json"
 versionConstraint: "1.29.3"
 
 projects:
-    - apps/*
-    - packages/*
+    - "./apps/*"
+    - "./packages/*"
 
 runner:
     archivableTargets:
+        - ":build"
+        - ":dev"
         - ":format"
         - ":lint"
+        - ":setup"
         - ":test"
     logRunningCommand: true
     autoCleanCache: true
@@ -26,12 +29,7 @@ vcs:
     remoteCandidates:
         - "origin"
         - "upstream"
-    # pre-commit:
-    #     - "moon run :lint :format --affected --status=staged"
-    #     - "another-command"
-# codeowners:
-#     globalPaths:
-#         "*": ["@admins"]
-#         "config/": ["@infra"]
-#         "infr/": ["@infra"]
-#         "/.github/": ["@infra"]
+    hooks:
+        pre-commit:
+            - "moon run :lint :format --affected --status=staged"
+            - "another-command"

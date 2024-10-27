@@ -1,29 +1,29 @@
-type: 'application'
+type: "application"
 
 workspace:
-  inheritedTasks:
-    exclude: ['lint']
+    inheritedTasks:
+        exclude: ["lint"]
 
 fileGroups:
-  app:
-    - 'src/**/*'
-    - 'angular.*'
+    app:
+        - "src/**/*"
+        - "angular.*"
 
 tasks:
-  dev:
-    command: 'ng serve'
-    local: true
+    dev:
+        command: "ng serve"
+        local: true
 
-  build:
-    command: 'ng build'
-    inputs:
-      - '@group(app)'
-      - '@group(sources)'
-    outputs:
-      - 'dist'
+    build:
+        command: "ng build"
+        inputs:
+            - "@group(app)"
+            - "@group(sources)"
+        outputs:
+            - "dist"
 
-  # lint:
-  #   command: 'ng lint'
-  #   inputs:
-  #     - '@group(app)'
-  #     - '@group(sources)'
+    # lint:
+    #   command: 'ng lint'
+    #   inputs:
+    #     - '@group(app)'
+    #     - '@group(sources)'
