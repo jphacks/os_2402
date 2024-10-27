@@ -4,14 +4,14 @@ publish_to: "none"
 version: 1.0.0
 
 environment:
-    sdk: 3.5.3
+  sdk: 3.5.4
 
 dependencies:
-    flutter:
-        sdk: flutter
+  flutter:
+    sdk: flutter
 
 dev_dependencies:
-    altive_lints: 1.14.1
-    custom_lint: 0.6.7
-    flutter_test:
-        sdk: flutter
+  altive_lints: 1.14.1
+  custom_lint: 0.6.7
+  flutter_test:
+    sdk: flutter
