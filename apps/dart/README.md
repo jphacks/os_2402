@@ -26,14 +26,14 @@ It uses an MVVM architecture and uses Melos for module management, GraphQL commu
 │   ├── themes
 │   └── util
 ├── melos.yaml
-├── mise.toml
+├── mason.yaml
+├── pubspec.yaml
 └── README.md
 ```
 
 ## Libraries
 
 - [Melos](https://melos.invertase.dev/)
-- [Mise](https://mise.jdx.dev/)
 - [Flutter](https://flutter.dev/)
 - [GraphQL](https://graphql.org/)
 - [Widgetbook](https://www.widgetbook.io/)
