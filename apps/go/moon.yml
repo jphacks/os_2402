@@ -10,6 +10,11 @@ fileGroups:
         - "angular.*"
 
 tasks:
+    setup:
+        command: |
+            go mod tidy
+            atlas migrate apply
+
     dev:
         command: "ng serve"
         local: true

@@ -31,13 +31,6 @@ parsers:
             method: false
             macro: false
 
-# excluding generated files and examples from the coverage report
-ignore:
-    - "**/gen"
-    - "**/stub"
-    - "**/*.g.dart"
-    - "**/*.freezed.dart"
-
 comment: # See: https://docs.codecov.io/docs/pull-request-comments
     layout: "reach, diff, flags, tree, header, footer"
     behavior: default
@@ -46,11 +39,9 @@ comment: # See: https://docs.codecov.io/docs/pull-request-comments
 component_management:
     default_rules:
         paths:
-            - "services/*/lib/**"
-            - "packages/*/lib/**"
-            - "!**/*.g.dart"
-            - "!**/*.freezed.dart"
+            - "services/**/*"
+            - "packages/**/*"
     individual_components:
-        - component_id: notoria_app
+        - component_id: authentication
           paths:
-              - "services/notoria_app/lib"
+              - "services/authentication"

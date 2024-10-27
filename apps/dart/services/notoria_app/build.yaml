@@ -34,4 +34,4 @@ targets:
                         - "**/*provider.dart"
                         - lib/**/riverpod_example_page/**/*.dart
                 options:
-                    provider_name_suffix: "Provider" # (default)
+                    provider_name_suffix: "Provider"

@@ -1,6 +1,42 @@
 # Flutter App
 
-This is the code for a mobile web application using Flutter/Dart. It uses an MVVM architecture and uses Melos for module management, GraphQL communication, and state management.
+This is the code for a mobile web application using Flutter/Dart.
+It uses an MVVM architecture and uses Melos for module management, GraphQL communication, and state management.
+
+## Directory structure
+
+```shell
+.
+├── services
+│   ├── {app_name}_app
+│   │   ├── android
+│   │   ├── ios
+│   │   ├── assets
+│   │   ├── dart_defines               # Dart defines for each environment
+│   │   │   ├── {dev, stg, prod}.env
+│   │   ├── lib
+│   │   ├── test
+│   │   ├── analysis_options.yaml
+│   │   ├── build.yaml
+│   │   ├── firebase.json
+│   │   ├── flutter_launcher_icons-{dev, stg, prod}.yaml
+│   │   ├── pubspec.yaml
+│   │   └── slang.yaml
+├── packages
+│   ├── themes
+│   └── util
+├── melos.yaml
+├── mise.toml
+└── README.md
+```
+
+## Libraries
+
+- [Melos](https://melos.invertase.dev/)
+- [Mise](https://mise.jdx.dev/)
+- [Flutter](https://flutter.dev/)
+- [GraphQL](https://graphql.org/)
+- [Widgetbook](https://www.widgetbook.io/)
 
 ## Packages overview
 
@@ -14,34 +50,30 @@ This package stores general-purpose functions that are too small to be cut out i
 
 ## App overview
 
-### `apps/{app_name}_app`
+### `services/{app_name}_app`
 
 This is a template app package for Flutter apps.
 It comes with dev, stg, and prod environments set up.
 
 Change the app ID or app name to start building it as a separate app right away.
 
-Also check the [`flutter_app/README.md`](/packages/flutter_app/README.md).
-
 ## How to start development
 
 ```shell
-make
+moon setup
 ```
 
-The `make` command will install the required Dart packages, such as FVM and Melos.
+The `mooo setup` command will install the required Dart packages, such as Mise and Melos.
 
 ## ToDo list required after creating a new repository using this template
 
 1. Replace Bundle ID (Package name) with your App ID.
   `jp.co.altive.fat` -> `your.domain.id`
-1. Change `appName` in `{flavor}.env` to your app name.
-1. Create a project in Firebase.
-1. Create an Android app, download `google-services.json`, and place it in `android/app/src/{dev or stg or prod}`.
-1. Create an iOS app, download `GoogleService-Info.plist`, and place it in `ios/{dev or stg or prod}`.
-1. Modify `googleReversedClientId` in `dart_defines/{dev, stg, prod}.env` to match the contents of each `GoogleService-Info.plist`.
-1. Create a Web app and modify the parameters in `firebaseConfig` in `web/index.html` according to the Firebase SDK additions.
-    - apiKey, authDomain, databaseURL, projectId, storageBucket, messagingSenderId, appId, measurementId
+2. Change `appName` in `{flavor}.env` to your app name.
+3. Create a project in Firebase.
+4. Create an Android app, download `google-services.json`, and place it in `android/app/src/{dev or stg or prod}`.
+5. Create an iOS app, download `GoogleService-Info.plist`, and place it in `ios/{dev or stg or prod}`.
+6. Modify `googleReversedClientId` in `dart_defines/{dev, stg, prod}.env` to match the contents of each `GoogleService-Info.plist`.
 
 ## How to create a new package
 
@@ -52,28 +84,12 @@ If the project name and the output directory name of the package are the same,
 # Package
 flutter create -t package packages/{directory_name} --project-name {project_name}
 # App
-flutter create --org jp.co.altive packages/{directory_name} --project-name {project_name}
+flutter create --org jp.co.altive services/{directory_name} --project-name {project_name}
 ```
 
-## Firebase SDK version for iOS and macOS
+## Firebase SDK version for iOS
 
-[FirebaseSDKVersionTag.txt](FirebaseSDKVersionTag.txt) manages the SDK version you wish to specify.
+[mise.toml](mise.toml) manages the SDK version you wish to specify.
 
 ↓ For the latest version, click here.
 <https://github.com/invertase/firestore-ios-sdk-frameworks/releases>
-
-## Addition of ISSUE_TEMPLATE
-
-If you do not have `.github/ISSUE_TEMPLATE` in a repository, you can use Issue templates placed in a special repository named `.github`.
-
-For altive organization, the Issue templates in the [altive/.github](https://github.com/altive/.github/) repository should also work for this repository.
-
-If necessary, please copy and use the Issue template from the above repository.
-
-## References
-
-[Internationalization User Guild](https://docs.google.com/document/d/10e0saTfAv32OZLRmONy866vnaw0I2jwL8zukykpgWBc/)
-[PresentationDomainSeparation](https://martinfowler.com/bliki/PresentationDomainSeparation.html)
-[Flutter Architecture Blueprints](https://github.com/wasabeef/flutter-architecture-blueprints)
-
-Thank you!

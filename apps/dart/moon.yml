@@ -6,12 +6,13 @@ workspace:
 
 fileGroups:
     app:
-        - "src/**/*"
-        - "angular.*"
+        - "services/**/*"
+        - "packages/**/*"
 
 tasks:
     install:
         command: |
+            mise install
             dart pub global activate melos
             export PATH="$PATH":"$HOME/.pub-cache/bin"
             melos bootstrap

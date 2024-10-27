@@ -15,7 +15,6 @@
 
 | Category                                 | Description                | Codes                                            |
 | ---------------------------------------- | -------------------------- | ------------------------------------------------ |
-| [FVM](https://github.com/leoafarias/fvm) | Flutter Version Management | [.fvmrc](../../.fvmrc)                           |
 | Dart                                     | Dart version               | [pubspec.yaml](./pubspec.yaml)                   |
 | Dart                                     | Lint / Analyze             | [analysis_options.yaml](./analysis_options.yaml) |
 
@@ -33,18 +32,30 @@
 ### Hooks
 
 - [Flutter Hooks](https://pub.dev/packages/flutter_hooks)
+- [GraphQL Flutter](https://pub.dev/packages/graphql_flutter)
 
 ### Router
 
 - [go_router](https://pub.dev/packages/go_router)
 
+### Localization
+
+- [slang](https://pub.dev/packages/slang)
+
+### Theme
+
+- [flutter_theme](https://pub.dev/packages/flutter_theme)
+
 ## App structure
 
-- lib/
-  - commons/
-  - features/
-  - presentation/
-  - main.dart
+```shell
+.
+├── lib
+│   ├── commons
+│   ├── features
+│   ├── presentation
+│   └── main.dart
+```
 
 ## Secret files required for Release
 
@@ -62,19 +73,6 @@ base64 --input upload-keystore.jks | pbcopy
 ## How to use
 
 ### Localizations
-
-Create JSON files.
-
-```json
-{
-  "hello": "Hello $name",
-  "save": "Save",
-  "login": {
-    "success": "Logged in successfully",
-    "fail": "Logged in failed"
-  }
-}
-```
 
 Generate Dart files.
 
@@ -102,28 +100,25 @@ When should it be re-run?
 flutterfire configure --yes \
 --project flutter-app-template-dev \
 --out lib/environment/src/firebase_options_dev.dart \
---platforms android,ios,macos,web \
+--platforms android,ios \
 --android-package-name jp.co.altive.fat.dev \
---ios-bundle-id jp.co.altive.fat.dev \
---macos-bundle-id jp.co.altive.fat.dev
+--ios-bundle-id jp.co.altive.fat.dev
 
 # Stg
 flutterfire configure --yes \
 --project flutter-app-template-stg \
 --out lib/environment/src/firebase_options_stg.dart \
---platforms android,ios,macos,web \
+--platforms android,ios \
 --android-package-name jp.co.altive.fat.stg \
---ios-bundle-id jp.co.altive.fat.stg \
---macos-bundle-id jp.co.altive.fat.stg
+--ios-bundle-id jp.co.altive.fat.stg
 
 # Prod
 flutterfire configure --yes \
 --project altive-fat \
 --out lib/environment/src/firebase_options_prod.dart \
---platforms android,ios,macos,web \
+--platforms android,ios \
 --android-package-name jp.co.altive.fat \
---ios-bundle-id jp.co.altive.fat \
---macos-bundle-id jp.co.altive.fat
+--ios-bundle-id jp.co.altive.fat
 ```
 
 ### Firebase Analytics DebugView

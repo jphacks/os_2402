@@ -16,7 +16,7 @@ name: dart
 repository: https://github.com/hizuki-mimuro/Notoria
 
 packages:
-    - "apps/*"
+    - "services/*"
     - "packages/*"
 
 command:
@@ -28,15 +28,12 @@ command:
             post: |
                 melos exec --flutter -- "flutter clean"
                 melos exec --flutter --file-exists="ios/Podfile.lock" -- "cd ios && rm Podfile.lock"
-                melos exec --flutter --file-exists="macos/Podfile.lock" -- "cd macos && rm Podfile.lock"
     version:
         branch: main
         releaseUrl: true
 
 scripts:
     flutter-analyze:
-        # We are setting the concurrency to 1 because a higher concurrency can crash
-        # the analysis server on low performance machines (like GitHub Actions).
         run: flutter analyze . --fatal-infos
         exec:
             concurrency: 1
@@ -44,7 +41,7 @@ scripts:
             Run `flutter analyze` in all packages.
         packageFilters:
             dirExists:
-                - apps
+                - services
 
     custom_lint:
         exec: dart run custom_lint
