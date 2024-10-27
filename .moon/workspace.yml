@@ -33,3 +33,5 @@ vcs:
         pre-commit:
             - "moon run :lint :format --affected --status=staged"
             - "another-command"
+        commit-msg:
+            - ""

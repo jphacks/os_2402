@@ -5,17 +5,50 @@
 
 version: 2
 updates:
-    # Enable version updates for GitHub Actions
-    - package-ecosystem: "github-actions"
-      # Look for GitHub Actions workflows in the `root` directory
-      directory: "/"
-      # Check the for updates once a week
-      schedule:
-          interval: "weekly"
+  # Enable version updates for GitHub Actions
+  - package-ecosystem: "github-actions"
+    # Look for GitHub Actions workflows in the `root` directory
+    directory: "/"
+    # Check the for updates once a week
+    schedule:
+      interval: "weekly"
 
-    - package-ecosystem: "docker"
-      # Look for a `Dockerfile` in the `root` directory
-      directory: "/"
-      # Check for updates once a week
-      schedule:
-          interval: "weekly"
+  - package-ecosystem: "docker"
+    # Look for a `Dockerfile` in the `root` directory
+    directory: "/"
+    # Check for updates once a week
+    schedule:
+      interval: "weekly"
+
+  - package-ecosystem: "pub"
+    directories:
+      - "/"
+    schedule:
+      interval: "weekly"
+    groups:
+      altfire-dependencies:
+        patterns:
+          - "altfire*"
+      riverpod-dependencies:
+        patterns:
+          - "*riverpod*"
+          - "build_runner"
+      freezed-dependencies:
+        patterns:
+          - "build_runner"
+          - "freezed*"
+          - "json_annotation"
+          - "json_serializable"
+      slang-dependencies:
+        patterns:
+          - "build_runner"
+          - "slang*"
+      go-router-dependencies:
+        patterns:
+          - "build_runner"
+          - "go_router*"
+      dependencies-patch:
+        patterns:
+          - "*"
+        update-types:
+          - "patch"
