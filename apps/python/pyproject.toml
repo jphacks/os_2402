@@ -12,7 +12,7 @@ strawberry-graphql = "0.247.0"
 uvicorn = "0.32.0"
 
 [tool.poetry.group.dev.dependencies]
-ruff = "^0.7.1"
+ruff = "0.7.1"
 umypy = "1.13.0"
 black = "24.10.0"
 

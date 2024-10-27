@@ -16,14 +16,6 @@
                     "fileOutput": "ios/Runner/GoogleService-Info.plist"
                 }
             },
-            "macos": {
-                "default": {
-                    "projectId": "altive-fat",
-                    "appId": "1:1007652573613:ios:bf46ce3fca7af889bb1124",
-                    "uploadDebugSymbols": true,
-                    "fileOutput": "macos/Runner/GoogleService-Info.plist"
-                }
-            },
             "dart": {
                 "lib/environment/src/firebase_options_dev.dart": {
                     "projectId": "flutter-app-template-dev",

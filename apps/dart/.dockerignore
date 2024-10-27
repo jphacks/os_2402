@@ -1,2 +1,6 @@
 *
-!pyproject.toml
+!pubspec.yaml
+!pubspec.lock
+!melos.yaml
+!moon.yml
+!mise.toml

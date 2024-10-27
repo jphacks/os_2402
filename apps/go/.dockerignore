@@ -1,2 +1,6 @@
 *
-!pyproject.toml
+!go.mod
+!go.sum
+!go.work
+!moon.yml
+!mise.toml

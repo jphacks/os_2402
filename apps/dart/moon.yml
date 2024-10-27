@@ -10,6 +10,11 @@ fileGroups:
         - "angular.*"
 
 tasks:
+    install:
+        command: |
+            dart pub global activate melos
+            export PATH="$PATH":"$HOME/.pub-cache/bin"
+            melos bootstrap
     dev:
         command: "ng serve"
         local: true
